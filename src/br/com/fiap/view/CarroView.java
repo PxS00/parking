@@ -18,25 +18,25 @@ public class CarroView {
                     case 0:
                         cor = JOptionPane.showInputDialog("Informe a Cor do Carro:");
                         descricao = JOptionPane.showInputDialog("Informe a Descrição do Carro:");
-                        System.out.println(carroController.inserirCarro(placa, cor, descricao));
+                        JOptionPane.showMessageDialog(null, carroController.inserirCarro(placa, cor, descricao));
                         break;
                     case 1:
                         cor = JOptionPane.showInputDialog("Informe a nova Cor do Carro:");
                         descricao = JOptionPane.showInputDialog("Informe a nova Descrição do Carro:");
-                        System.out.println(carroController.alterarCarro(placa, cor, descricao));
+                        JOptionPane.showMessageDialog(null,carroController.alterarCarro(placa, cor, descricao));
                         break;
                     case 2:
-                        System.out.println(carroController.excluirCarro(placa));
+                        JOptionPane.showMessageDialog(null, carroController.excluirCarro(placa));
                         break;
                     case 3:
-                        System.out.println(carroController.listarUmCarro(placa));
+                        JOptionPane.showMessageDialog(null, carroController.listarUmCarro(placa));
                         break;
                     default:
-                        System.out.println("Opção Inválida!");
+                        JOptionPane.showMessageDialog(null, "Opção Inválida!");
                 }
 
             } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
         }while (JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Atenção",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0);
         JOptionPane.showMessageDialog(null, "Fim de Programa!");
