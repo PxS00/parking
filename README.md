@@ -1,2 +1,0 @@
-# parking
-Projeto Acadêmico
