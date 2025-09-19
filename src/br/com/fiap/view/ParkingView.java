@@ -7,74 +7,85 @@ import javax.swing.*;
 
 public class ParkingView {
     public static void main(String[] args) {
-        String[] opcoesMenu = {"Carro", "Cliente"};
-        String[] opcoesAcao = {"Inserir", "Alterar", "Excluir", "Listar"};
-        CarroController carroController = new CarroController();
-        ClienteController clienteController = new ClienteController();
-        int escolhaMenu, op;
-        String placa, cor, descricao, nomeCliente;
-        int idCliente;
-        do {
-            try {
-                escolhaMenu = JOptionPane.showOptionDialog(null, "Quem deseja manipular?", "Menu Principal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoesMenu, opcoesMenu[0]);
-                switch (escolhaMenu) {
-                    case 0: // Carro
-                        op = JOptionPane.showOptionDialog(null, "Escolha uma ação para Carro", "Carro", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoesAcao, opcoesAcao[0]);
-                        placa = JOptionPane.showInputDialog("Informe a Placa do Carro:");
-                        switch (op) {
-                            case 0:
-                                cor = JOptionPane.showInputDialog("Informe a Cor do Carro:");
-                                descricao = JOptionPane.showInputDialog("Informe a Descrição do Carro:");
-                                JOptionPane.showMessageDialog(null, carroController.inserirCarro(placa, cor, descricao));
-                                break;
-                            case 1:
-                                cor = JOptionPane.showInputDialog("Informe a nova Cor do Carro:");
-                                descricao = JOptionPane.showInputDialog("Informe a nova Descrição do Carro:");
-                                JOptionPane.showMessageDialog(null, carroController.alterarCarro(placa, cor, descricao));
-                                break;
-                            case 2:
-                                JOptionPane.showMessageDialog(null, carroController.excluirCarro(placa));
-                                break;
-                            case 3:
-                                JOptionPane.showMessageDialog(null, carroController.listarUmCarro(placa));
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+        String[] escolha = {"Carro","Cliente"};
+        int opcao;
+        try {
+            do {
+                opcao = JOptionPane.showOptionDialog(null, "Escolha uma das opções abaixo para manipular um Carro ou Cliente", "Escolha", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, escolha, escolha[0]);
+                switch (opcao) {
+                    case 0:
+                        String placa, cor, descricao;
+                        String[] escolha1 = {"Inserir","Alterar","Excluir","Listar"};
+                        int opcao1;
+                        CarroController carroController = new CarroController();
+                        try {
+                            opcao1 = JOptionPane.showOptionDialog(null, "Escolha uma das opções abaixo para manipular um Carro", "Escolha", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, escolha1, escolha1[0]);
+                            placa = JOptionPane.showInputDialog("Digite a placa do carro");
+                            switch (opcao1) {
+                                case 0:
+                                    cor = JOptionPane.showInputDialog("Digite a cor do carro");
+                                    descricao = JOptionPane.showInputDialog("Digite uma descrição para o carro");
+                                    System.out.println(carroController.inserirCarro(placa, cor, descricao));
+                                    break;
+                                case 1:
+                                    cor = JOptionPane.showInputDialog("Digite a NOVA cor do carro");
+                                    descricao = JOptionPane.showInputDialog("Digite uma NOVA descrição para o carro");
+                                    System.out.println(carroController.alterarCarro(placa, cor, descricao));
+                                    break;
+                                case 2:
+                                    System.out.println(carroController.excluirCarro(placa));
+                                    break;
+                                case 3:
+                                    JOptionPane.showMessageDialog(null, carroController.listarUmCarro(placa));
+                                    break;
+                                default:
+                                    System.out.println("Opção inválida!");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Erro: " + e.getMessage());;
                         }
                         break;
-                    case 1: // Cliente
-                        op = JOptionPane.showOptionDialog(null, "Escolha uma ação para Cliente", "Cliente", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoesAcao, opcoesAcao[0]);
-                        switch (op) {
-                            case 0:
-                                nomeCliente = JOptionPane.showInputDialog("Informe o Nome do Cliente:");
-                                placa = JOptionPane.showInputDialog("Informe a Placa do Cliente:");
-                                JOptionPane.showMessageDialog(null, clienteController.inserirCliente(nomeCliente, placa));
-                                break;
-                            case 1:
-                                idCliente = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID do Cliente a alterar:"));
-                                nomeCliente = JOptionPane.showInputDialog("Informe o novo Nome do Cliente:");
-                                placa = JOptionPane.showInputDialog("Informe a nova Placa do Cliente:");
-                                JOptionPane.showMessageDialog(null, clienteController.alterarCliente(idCliente, nomeCliente, placa));
-                                break;
-                            case 2:
-                                idCliente = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID do Cliente a excluir:"));
-                                JOptionPane.showMessageDialog(null, clienteController.excluirCliente(idCliente));
-                                break;
-                            case 3:
-                                idCliente = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID do Cliente a listar:"));
-                                JOptionPane.showMessageDialog(null, clienteController.listarUmCliente(idCliente));
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                    case 1:
+                        String nome, placa1;
+                        String[] escolha2 = {"Inserir","Alterar","Excluir","Listar"};
+                        int id, opcao2;
+                        ClienteController clienteController = new ClienteController();
+                        try {
+                            opcao2 = JOptionPane.showOptionDialog(null, "Escolha uma das opções abaixo para manipular um Cliente", "Escolha", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, escolha2, escolha2[0]);
+                            switch (opcao2) {
+                                case 0:
+                                    nome = JOptionPane.showInputDialog("Digite o nome do cliente");
+                                    placa1 = JOptionPane.showInputDialog("Digite a placa do carro");
+                                    System.out.println(clienteController.inserirCliente(nome, placa1));
+                                    break;
+                                case 1:
+                                    id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));
+                                    nome = JOptionPane.showInputDialog("Digite o NOVO nome do cliente");
+                                    placa1 = JOptionPane.showInputDialog("Digite a NOVA placa do carro");
+                                    System.out.println(clienteController.alterarCliente(id, nome, placa1));
+                                    break;
+                                case 2:
+                                    id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));
+                                    System.out.println(clienteController.excluirCliente(id));
+                                    break;
+                                case 3:
+                                    id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));
+                                    JOptionPane.showMessageDialog(null, clienteController.listarUmCliente(id));
+                                    break;
+                                default:
+                                    System.out.println("Opção inválida!");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Erro: " + e.getMessage());
                         }
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                        System.out.println("Opção inválida!");
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            }
-        } while (JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0);
-        JOptionPane.showMessageDialog(null, "Fim de Programa!");
+            } while (JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0);
+            JOptionPane.showMessageDialog(null, "Fim de Programa");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());;
+        }
     }
 }
