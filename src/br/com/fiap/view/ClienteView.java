@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class ClienteView {
     public static void main(String[] args) {
-        String nome, placa;
+        String nome, placa, avatar;
         String[] escolha = {"Inserir","Alterar","Excluir","Listar"};
         int id, opcao;
         ClienteController clienteController = new ClienteController();
@@ -17,13 +17,15 @@ public class ClienteView {
                     case 0:
                         nome = JOptionPane.showInputDialog("Digite o nome do cliente");
                         placa = JOptionPane.showInputDialog("Digite a placa do carro");
-                        System.out.println(clienteController.inserirCliente(nome, placa));
+                        avatar = JOptionPane.showInputDialog("Digite o avatar do cliente (masculino/feminino)");
+                        System.out.println(clienteController.inserirCliente(nome, placa, avatar));
                         break;
                     case 1:
                         id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));
                         nome = JOptionPane.showInputDialog("Digite o NOVO nome do cliente");
                         placa = JOptionPane.showInputDialog("Digite a NOVA placa do carro");
-                        System.out.println(clienteController.alterarCliente(id, nome, placa));
+                        avatar = JOptionPane.showInputDialog("Digite o NOVO avatar do cliente (masculino/feminino)");
+                        System.out.println(clienteController.alterarCliente(id, nome, placa, avatar));
                         break;
                     case 2:
                         id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));

@@ -10,25 +10,27 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ClienteController {
-    public String inserirCliente(String nomeCliente, String placa) throws ClassNotFoundException, SQLException {
+    public String inserirCliente(String nomeCliente, String placa, String avatar) throws ClassNotFoundException, SQLException {
         String resultado;
         Connection con = ConnectionFactory.abrirConexao();
         Cliente cliente = new Cliente();
         cliente.setNomeCliente(nomeCliente);
         cliente.setPlaca(placa);
+        cliente.setAvatar(avatar);
         ClienteDAO clienteDAO = new ClienteDAO(con);
         resultado = clienteDAO.inserir(cliente);
         ConnectionFactory.fecharConexao(con);
         return resultado;
     }
 
-    public String alterarCliente(int idCliente, String nomeCliente, String placa) throws ClassNotFoundException, SQLException {
+    public String alterarCliente(int idCliente, String nomeCliente, String placa, String avatar) throws ClassNotFoundException, SQLException {
         String resultado;
         Connection con = ConnectionFactory.abrirConexao();
         Cliente cliente = new Cliente();
         cliente.setIdCliente(idCliente);
         cliente.setNomeCliente(nomeCliente);
         cliente.setPlaca(placa);
+        cliente.setAvatar(avatar);
         ClienteDAO clienteDAO = new ClienteDAO(con);
         resultado = clienteDAO.alterar(cliente);
         ConnectionFactory.fecharConexao(con);

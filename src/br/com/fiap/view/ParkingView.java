@@ -46,7 +46,7 @@ public class ParkingView {
                         }
                         break;
                     case 1:
-                        String nome, placa1;
+                        String nome, placa1, avatar;
                         String[] escolha2 = {"Inserir","Alterar","Excluir","Listar"};
                         int id, opcao2;
                         ClienteController clienteController = new ClienteController();
@@ -56,13 +56,15 @@ public class ParkingView {
                                 case 0:
                                     nome = JOptionPane.showInputDialog("Digite o nome do cliente");
                                     placa1 = JOptionPane.showInputDialog("Digite a placa do carro");
-                                    System.out.println(clienteController.inserirCliente(nome, placa1));
+                                    avatar = JOptionPane.showInputDialog("Digite o avatar do cliente (masculino/feminino)");
+                                    System.out.println(clienteController.inserirCliente(nome, placa1, avatar));
                                     break;
                                 case 1:
                                     id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));
                                     nome = JOptionPane.showInputDialog("Digite o NOVO nome do cliente");
                                     placa1 = JOptionPane.showInputDialog("Digite a NOVA placa do carro");
-                                    System.out.println(clienteController.alterarCliente(id, nome, placa1));
+                                    avatar = JOptionPane.showInputDialog("Digite o NOVO avatar do cliente (masculino/feminino)");
+                                    System.out.println(clienteController.alterarCliente(id, nome, placa1, avatar));
                                     break;
                                 case 2:
                                     id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do cliente"));

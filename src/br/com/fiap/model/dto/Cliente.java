@@ -4,6 +4,7 @@ public class Cliente {
     private int idCliente;
     private String nomeCliente;
     private String placa;
+    private String avatar;
 
     public Cliente() {
     }
@@ -30,5 +31,13 @@ public class Cliente {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

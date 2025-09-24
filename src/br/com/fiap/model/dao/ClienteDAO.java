@@ -21,10 +21,11 @@ public class ClienteDAO implements IDAO{
 
     public String inserir(Object object) {
         cliente = (Cliente) object;
-        String sql = "insert into ddd_cliente(NOME_CLIENTE,placa) values(?,?)";
+        String sql = "insert into ddd_cliente(NOME_CLIENTE,placa,avatar) values(?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql);) {
             ps.setString(1, cliente.getNomeCliente());
             ps.setString(2, cliente.getPlaca());
+            ps.setString(3, cliente.getAvatar());
             if (ps.executeUpdate() > 0) {
                 return "Inserido com sucesso.";
             } else {
@@ -37,11 +38,12 @@ public class ClienteDAO implements IDAO{
 
     public String alterar(Object object) {
         cliente = (Cliente) object;
-        String sql = "update ddd_cliente set NOME_CLIENTE = ?, placa = ? where id_cliente = ?";
+        String sql = "update ddd_cliente set NOME_CLIENTE = ?, placa = ?, avatar = ? where id_cliente = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql);) {
             ps.setString(1, cliente.getNomeCliente());
             ps.setString(2, cliente.getPlaca());
-            ps.setInt(3, cliente.getIdCliente());
+            ps.setString(3, cliente.getAvatar());
+            ps.setInt(4, cliente.getIdCliente());
             if (ps.executeUpdate() > 0) {
                 return "Alterado com sucesso.";
             } else {
@@ -74,10 +76,11 @@ public class ClienteDAO implements IDAO{
             ps.setInt(1, cliente.getIdCliente());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return String.format("ID: %d\nNome: %s\nPlaca: %s",
+                return String.format("ID: %d\nNome: %s\nPlaca: %s\nAvatar: %s",
                         rs.getInt("id_cliente"),
                         rs.getString("NOME_CLIENTE"),
-                        rs.getString("placa"));
+                        rs.getString("placa"),
+                        rs.getString("avatar"));
             } else {
                 return "Registro não encontrado!";
             }
